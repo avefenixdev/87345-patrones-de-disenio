@@ -8,6 +8,9 @@ import ar.com.educacionit.decorator.notificador.NotificadorEmail;
 import ar.com.educacionit.decorator.notificador.NotificadorTikTok;
 import ar.com.educacionit.decorator.notificador.NotificadorWhatsApp;
 import ar.com.educacionit.decorator.notificador.interfaces.Notificador;
+import ar.com.educacionit.factory.granja.GranjaFactory;
+import ar.com.educacionit.factory.granja.TipoAnimal;
+import ar.com.educacionit.factory.granja.interfaces.Animal;
 import ar.com.educacionit.pasarela.*;
 
 public class Test {
@@ -106,10 +109,18 @@ public class Test {
 		// - El tipo se decide en tiempo de ejecución
 		// - Sabes que el sistema va a crecer
 		
+		System.out.println("------------------------------------");
 		
+		GranjaFactory factory = new GranjaFactory();
 		
-		
-		
+		Animal perro = factory.crearAnimal(TipoAnimal.PERRO);
+		perro.emitirSonido();
+		Animal gato = factory.crearAnimal(TipoAnimal.GATO); 
+		gato.emitirSonido();
+		Animal vaca = factory.crearAnimal(TipoAnimal.VACA);
+		vaca.emitirSonido();
+		Animal oveja = factory.crearAnimal(TipoAnimal.OVEJA);
+		oveja.emitirSonido();
 	}
 
 }
