@@ -81,6 +81,35 @@ public class Test {
 		
 		netwa.enviar("Novedades del grupo de lectura!");
 		
+		System.out.println("-----------------------------------");
+		System.out.println("-----------------------------------");
+		
+		// Factory Method
+		// Es una forma ordenada de crear objetos sin acomplamiento que podría 
+		// suceder en la creación de objetos a gran escala
+		
+		// if ( tipo === 'admin' ) {
+		//	user = new AdminUser();
+		// } else if ( tipo === 'normal' ) {
+		// 	user = new NormalUser();
+		// } else if ( tipo === 'invitado') {
+		//	user = new InvitadoUser();
+		// }
+		
+		// PROBLEMA
+		// El código depende de clases concretas
+		// Cada nuevo tipo romper el archivo existente
+		// La ógia de negocio está mezclada con la lógica de creación
+		
+		// Cuando usar Factory Method
+		// - Tenés varios objetos similares
+		// - El tipo se decide en tiempo de ejecución
+		// - Sabes que el sistema va a crecer
+		
+		
+		
+		
+		
 	}
 
 }
