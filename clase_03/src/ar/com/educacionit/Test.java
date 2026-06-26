@@ -29,9 +29,9 @@ public class Test {
 		// El patrón command sirve para separar quién pide una acción de quién ejecuta la acción
 		// O sea nos obliga a no mezclar la lógica del botón/shorcut con la lógica de ejecución
 		
-		// Comando concreto -> Escribir comando
-		// Receiver -> Recibe la tarea a realizar
-		// INVOKER -> 
+		// Comando concreto -> EscribirComando
+		// RECEIVER -> Recibe la tarea a realizar -> EditorTexto
+		// INVOKER -> Invoca -> CommandManager
 		
 	}
 
