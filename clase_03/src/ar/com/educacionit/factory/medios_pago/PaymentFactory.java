@@ -1,19 +1,20 @@
 package ar.com.educacionit.factory.medios_pago;
 
+import ar.com.educacionit.factory.medios_pago.enums.MediosPago;
 import ar.com.educacionit.factory.medios_pago.interfaces.Payment;
 
 public class PaymentFactory {
 
 	
-	public Payment createPayment(String payment) {
+	public Payment createPayment(MediosPago payment) {
 		switch (payment) {
-		case "CARD": {
+		case CARD: {
 			return new CardPayment();
 		}
-		case "CRYPTO": {
+		case CRYPTO: {
 			return new CryptoPayment();
 		}
-		case "PAYPAL": {
+		case PAYPAL: {
 			return new PayPalPayment();
 		}
 		default:
