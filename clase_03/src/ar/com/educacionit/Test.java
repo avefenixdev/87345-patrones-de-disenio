@@ -1,5 +1,6 @@
 package ar.com.educacionit;
 
+import ar.com.educacionit.builder.usuario.Usuario;
 import ar.com.educacionit.command.editor_texto.CommandManager;
 import ar.com.educacionit.command.editor_texto.EditorTexto;
 import ar.com.educacionit.command.editor_texto.EscribirComando;
@@ -61,6 +62,25 @@ public class Test {
 		manager.ejecutarComando(escribirChau);
 		
 		System.out.println("Texto al final: " + editor.getTexto()); // Hola Chau
+		
+		// ---------------------------------
+		System.out.println("-------------------------");
+		// ---------------------------------
+		
+		// Patrón Builder (Creacional)
+		// Lo que queremos evitar con este patrón son los constructres con múltples parametros.
+		// Construir un objeto paso a paso de forma legible, controlada para obtener un objeto completo.
+		
+		// Usuario usuario = new Usuario("Maximiliano", "Principe", "15-5555-8568", 22, "max@gmail.com");
+		
+		Usuario u = new Usuario.Builder("Maxi", "Princi")
+									.edad(22)
+									.email("max@gmail.com")
+									.telefono("15-5555-2535")
+									.build();
+		
+		System.out.println(u);
+		
 	}
 
 }
