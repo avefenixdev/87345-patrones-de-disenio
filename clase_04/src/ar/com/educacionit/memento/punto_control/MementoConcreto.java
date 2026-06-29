@@ -23,4 +23,9 @@ public class MementoConcreto implements Memento {
 		return this.vida;
 	}
 
+	@Override
+	public String toString() {
+		return "MementoConcreto [nivel=" + nivel + ", vida=" + vida + "]";
+	}
+
 }

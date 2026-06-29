@@ -4,8 +4,14 @@ import java.io.IOException;
 import java.util.List;
 
 import ar.com.educacionit.lectura_escritura.NioFacade;
+import ar.com.educacionit.memento.punto_control.GestorPartidas;
+import ar.com.educacionit.memento.punto_control.Jugador;
 import ar.com.educacionit.observer.youtube.CanalYoutube;
 import ar.com.educacionit.observer.youtube.Usuario;
+import ar.com.educacionit.strategy.pago_ecommerce.CarritoCompras;
+import ar.com.educacionit.strategy.pago_ecommerce.MercadoPagoEstrategia;
+import ar.com.educacionit.strategy.pago_ecommerce.PayPalEstrategia;
+import ar.com.educacionit.strategy.pago_ecommerce.TarjetaCreditoEstrategia;
 
 public class Test {
 
@@ -77,14 +83,55 @@ public class Test {
 		// MementoConcreto (Memento)
 		// https://refactoring.guru/es/design-patterns/memento
 		
+		System.out.println("Patrón Memento");
+		Jugador jugador = new Jugador("Nivel 1",  100);
 		
+		GestorPartidas gestor = new GestorPartidas();
 		
+		// Guardar progreso
+		gestor.add(jugador.guardar()); // Nivel 1 -> 100 | 0
 		
+		jugador.setEstado("Nivel 2", 75);
 		
+		System.out.println("Avanzo: " + jugador);
+		// Guardar progreso
+		gestor.add(jugador.guardar()); // Nivel 2 -> 75 | 1
 		
+		jugador.setEstado("Nivel 3", 50);
+		System.out.println("Avanzo: " + jugador);
+		gestor.add(jugador.guardar()); // Nivel 3 -> 50 | 2
 		
+		// Restaurar al nivel 1
+		jugador.restaurar(gestor.get(0));
+		System.out.println("Restaurado a nivel 1: " + jugador);
 		
+		System.out.println(gestor.getCheckpoints());
 		
+		jugador.restaurar(gestor.get(1));
+		
+		System.out.println("Restaurado a nivel 2: " + jugador);
+		
+		// Patrón Strategy (Patrón Comportamiento)
+		// https://refactoring.guru/es/design-patterns/strategy
+		// Nos permite tener varias formas de hacer lo mismo y poder cambiarlas sin tocar el código que las usa.
+		// Tenés que pagar algo (PAGAR)
+		// Tarjeta de crédito (Estrategias Tarjeta crédito)
+		// Efectivo (Estrategias Efectivo)
+		// Transferencia (Estrategias Transferencia)
+		
+		System.out.println("Patrón Strategy");
+		
+		CarritoCompras carro = new CarritoCompras();
+		
+		carro.setMetodoPagoEstrategia(new TarjetaCreditoEstrategia("123-456-555"));
+		carro.checkout(500);
+		
+		carro.setMetodoPagoEstrategia(new PayPalEstrategia("max@gmail.com"));
+		carro.checkout(333);
+
+		
+		carro.setMetodoPagoEstrategia(new MercadoPagoEstrategia("maxi.mp@gmail.com"));
+		carro.checkout(44444);
 		
 		
 		

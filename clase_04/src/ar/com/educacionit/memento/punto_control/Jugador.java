@@ -17,7 +17,7 @@ public class Jugador {
 		this.vida = vida;
 	}
 	
-	public Memento guarda() {
+	public Memento guardar() {
 		return new MementoConcreto(this.nivel, this.vida);
 	}
 	
