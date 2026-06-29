@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class NioFacade {
 	
@@ -31,9 +33,28 @@ public class NioFacade {
 	}
 	
 	// Leer líneas de una cadena (stream)
-	// Copiar archivo a destino
-	// Eliminar archivo
+	public void leerLineasContenidas(String palabraClave) throws IOException {
+		try(Stream<String> lineas = Files.lines(rutaArchivo)) {
+			lineas.filter(linea -> linea.contains(palabraClave))
+				.forEach(System.out::println);
+		}
+	}
 	
+	// Copiar archivo a destino
+	public void copiarA(String destinoArchivo) throws IOException {
+		Path destinoRuta = Paths.get(destinoArchivo);
+		if (Files.notExists(destinoRuta.getParent())) {
+			Files.createDirectories(destinoRuta.getParent());
+		}
+		Files.copy(rutaArchivo, destinoRuta, StandardCopyOption.REPLACE_EXISTING);
+		System.out.println("Archivo copiado a: " + destinoRuta.toAbsolutePath());
+	}
+	
+	// Eliminar archivo
+	public void borrar() throws IOException {
+		Files.deleteIfExists(rutaArchivo);
+		System.out.println("Archivo eliminado: " + rutaArchivo.toAbsolutePath());
+	}
 	
 
 }
