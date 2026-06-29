@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
 
 public class NioFacade {
 	
@@ -23,6 +25,11 @@ public class NioFacade {
 	}
 	
 	// Escribir líneas en una archivo
+	public void escribirLineas(List<String> lineas) throws IOException {
+		Files.write(rutaArchivo, lineas, StandardOpenOption.APPEND);
+		System.out.println("Líneas escritas en: " + rutaArchivo.getFileName());
+	}
+	
 	// Leer líneas de una cadena (stream)
 	// Copiar archivo a destino
 	// Eliminar archivo
